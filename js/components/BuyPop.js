@@ -18,6 +18,7 @@ class BuyPop extends Component{
 	render(){
 		const {show, item, config, closed, submit} = this.props;
 		if(config.errorCode === 0){
+		const imgUrl = item.goodsPic ? item.goodsPic.split(",")[0]:item.goodsPic
 		return (
 			<div className={classnames(
 				"pop_bg",
@@ -26,7 +27,7 @@ class BuyPop extends Component{
 				<div className="pop_container">
 					<h3><div className="colsed" onClick={this._closed.bind(this)} ></div><div className="title">请选择参与人次</div></h3>
 		              <div className ="pop_content">
-			              <div className="photo"><img src={item.goodsPic} alt=""/></div>
+			              <div className="photo"><img src={imgUrl} alt=""/></div>
 			              <div className="content">
 			                <div className="title">{item.goodsName}</div>
 			                <div className="intor">{item.desc}</div>

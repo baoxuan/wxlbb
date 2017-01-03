@@ -10,7 +10,6 @@
 }
 .swiper-slide {
 	height: 180px;
-	overflow: hidden;
 	img{
 		width: 100%;
 	}
@@ -39,6 +38,7 @@
 @font28:28*@rem;
 @font32:32*@rem;
 @rem : 0.02rem;/*使用方法：width:750*@rem;满屏是750px*/
+
 
 
 /*弹出框*/
@@ -231,6 +231,181 @@
     text-align: center;
 }
 
+// 详情页
+// 
+
+.inforHeader{
+	background: #f0f2f5;
+	height: 430*@rem;
+	text-align: center;
+	img{
+		width: 360*@rem;
+	}
+}
+	.swiper-pagination-fraction{
+		bottom:5%;
+		background: #fff;
+		padding:5*@rem 10*@rem;
+		width: 94*@rem;
+		left: 50%;
+		margin-left: -52*@rem;
+		font-size: 12*@rem;
+		color: @gray
+	}
+.infoContainer{
+	background: #fff;
+	padding:36*@rem 36*@rem;
+	.title{
+		color:#2f2e37;
+		font-size: 32*@rem;
+		text-align: center;
+	}
+	.intor{
+		font-size: 24*@rem;
+		color: #acaab8;
+		text-align: center;
+		padding: 18*@rem 0;
+	}
+	.number{
+		color: #acaab8;
+	}
+
+	.progress { 
+		width: 100%;
+		height: 10*@rem;
+		background: #e8f3fd;
+		margin: 15*@rem 0; 
+		border-radius: 10*@rem;
+		i {
+			width:1px; 
+			height: 10*@rem;
+			background: #36b6f6;
+			border-radius: 10*@rem;
+			display: block;
+			// transition: all 1s;
+		}
+
+	}
+	.total{
+		font-size:  22*@rem;
+		float: left;
+		color: #2f2e37;
+		i{
+			color:#acaab8;
+		}
+	}
+	.surplus{
+		float: right;
+		font-size: 22*@rem;
+		color: #2f2e37;
+		i{
+			color:#1a92ee;
+		}
+	}
+
+}
+.infoList{
+	background: #fff;
+	margin-bottom: 12*@rem;
+	li{
+		padding: 0 36*@rem;
+		height: 95*@rem;
+		line-height: 95*@rem;
+		border-top: 1px solid #ddd;
+		a{
+			font-size: 28*@rem;
+			display: block;
+			position: relative;
+			color:#2f2e37;
+			&:before{
+				content: "";
+				position: absolute;
+				right:0;
+				top: 30*@rem;
+				width: 30*@rem;
+				height: 30*@rem;
+				display: block;
+				background: url(../images/arrow.png) no-repeat center;
+				background-size:30*@rem
+			}
+		}
+	}
+}
+.recordCotainer{
+	background: #fff;
+	padding-left: 36*@rem;
+	.title{
+		border-bottom: 1px solid #ddd;
+		color: #2f2e37;
+		font-size: 28*@rem;
+		height: 75*@rem;
+		line-height: 75*@rem;
+		i{
+			float: right;
+			color:#acaab8;
+			padding-right: 36*@rem;
+		}
+	}
+	.recordList{
+		padding-bottom: 10*@rem;
+	    li{
+	    	position: relative;
+		   	border-bottom: 1px solid #ddd;
+		   	.lContainer{
+		   		display: -moz-box;
+				display: -webkit-box;
+			    display: box;
+				padding: 26*@rem 0;
+				.header{
+					width: 75*@rem;
+					height: 75*@rem;
+					border-radius: 100%;
+					overflow: hidden;
+					img{
+						width: 100%;
+					}
+				}
+				.Msg{
+
+					padding-left: 40*@rem;
+					h3{
+						font-size: 28*@rem;
+						color:#2f2e37;
+						height: 28*@rem;
+					}
+					p{
+						font-size: 28*@rem;
+						height: 28*@rem;
+						color:#acaab8;
+						padding: 20*@rem 0;
+					}
+				}
+			}
+			.Number{
+				position: absolute;
+				font-size: 32*@rem;
+				right:36*@rem;
+				top: 50*@rem;
+				i{
+					color:#1a92ee;
+				}
+			}
+		}
+	}
+}
+.blueBtn{
+	background: #1a92ee;
+	height: 75*@rem;
+	line-height: 75*@rem;
+	font-size:30*@rem;
+	color: #fff;
+	text-align: center;
+	width: 620*@rem;
+	margin: 18*@rem auto;
+	display: block;
+	border: none;
+	border-radius: 3px;
+}
 
 
 
@@ -241,12 +416,12 @@
 	.yiyuan-swiper .swiper-pagination-bullet {border:2px @white solid; background: transparent; opacity: .5; width: 10*@rem; height:10*@rem; border-radius: 50%; }
 	.yiyuan-swiper .swiper-pagination-bullet-active {border:2px @white solid; background: @white;opacity: 1;}
 	/*通知条*/
-	.notice-bar { width: 100%; height: 70*@rem; border-bottom:1px @linegray solid; line-height:70*@rem; text-align: center; font-size: @font24; display: block; }
+	.notice-bar {background: #fff;  width: 100%; height: 70*@rem; border-bottom:1px @linegray solid; line-height:70*@rem; text-align: center; font-size: @font24; display: block; }
 	.notice-bar i{ width: 40*@rem; height: 40*@rem; display: inline-block;vertical-align: middle; background: url(../images/yiyuan.png) no-repeat 0 0; background-size:40*@rem auto; }
 	.notice-bar span { vertical-align: middle}
 	.notice-bar span em {color:@darkgray;}
 	/*宝物列表*/
-	.treasure-box { margin: 0 33*@rem; padding:33*@rem 0; border-bottom:1px @linegray solid;  display: -moz-box;display: -webkit-box;display: box; overflow: hidden;}
+	.treasure-box { background: #fff; margin: 0 33*@rem; padding:33*@rem 0; border-bottom:1px @linegray solid;  display: -moz-box;display: -webkit-box;display: box; overflow: hidden;}
 	.treasure-box .photo { width:35%;}
 	.treasure-box .photo img { width: 100%;}
 	.treasure-box .content { width:65%; padding-left: 35*@rem; box-sizing: border-box; position: relative;}

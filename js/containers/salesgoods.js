@@ -68,9 +68,12 @@ class salesgoods extends React.Component {
             :(<Link to="#" className="notice-bar">
             <i></i><span>恭喜张三刚刚获得 <em>周六福3D皇冠金戒指</em></span></Link>)
           }
-          {GoodsList.data.saleGoods.map((item)=>(
-            <Link to={`GoodsInfo`} query={{goodsNo: item.goodsNo}} key={item.goodsNo}  className="treasure-box">
-              <div className="photo"><img src={item.goodsPic} alt={item.goodsName}/></div>
+          {GoodsList.data.saleGoods.map((item)=>{
+            const imgUrl = item.goodsPic ? item.goodsPic.split(",")[0]:item.goodsPic
+            return(
+            <div className="bgf" key={item.goodsNo} >
+            <Link to={`GoodsInfo`} query={{goodsno: item.goodsNo}}  className="treasure-box">
+              <div className="photo"><img src={imgUrl} alt={item.goodsName}/></div>
               <div className="content">
                 <div className="title">{item.goodsName}</div>
                 <div className="intor">{item.desc}</div>
@@ -80,7 +83,9 @@ class salesgoods extends React.Component {
                 <button className="join" onClick={this.join.bind(this, item)}>立即参与</button>
               </div>
             </Link>
+            </div>
             )
+          }
           )}
 
         </div>
