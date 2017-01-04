@@ -28,6 +28,7 @@
 @white : #fff;
 @orange : #ff6633;
 @black:#000;
+@lightgray:#efeff4;
 @gray:#888;
 @darkgray:#222;
 @linegray:#ececec;
@@ -36,6 +37,7 @@
 @font21:21*@rem;
 @font24:24*@rem;
 @font28:28*@rem;
+@font30:30*@rem;
 @font32:32*@rem;
 @rem : 0.02rem;/*使用方法：width:750*@rem;满屏是750px*/
 
@@ -333,13 +335,12 @@
 }
 .recordCotainer{
 	background: #fff;
-	padding-left: 36*@rem;
 	.title{
 		border-bottom: 1px solid #ddd;
 		color: #2f2e37;
 		font-size: 28*@rem;
-		height: 75*@rem;
-		line-height: 75*@rem;
+		height: 70*@rem;
+		line-height: 70*@rem;
 		i{
 			float: right;
 			color:#acaab8;
@@ -359,14 +360,11 @@
 				.header{
 					width: 75*@rem;
 					height: 75*@rem;
-					border-radius: 100%;
-					overflow: hidden;
 					img{
 						width: 100%;
 					}
 				}
 				.Msg{
-
 					padding-left: 40*@rem;
 					h3{
 						font-size: 28*@rem;
@@ -407,6 +405,115 @@
 	border-radius: 3px;
 }
 
+.historyCotainer{
+	display: block;
+	margin-bottom: 12*@rem;
+	background: #fff;
+	.title{
+		padding-left: 36*@rem;
+		border-bottom: 1px solid #ddd;
+		color: #2f2e37;
+		font-size: 28*@rem;
+		height: 75*@rem;
+		line-height: 75*@rem;
+		i{
+			float: right;
+			color:#acaab8;
+			padding-right: 36*@rem;
+		}
+	}
+	.historyList{
+	    position: relative;
+		   height: 280*@rem;
+		   	.lContainer{
+		   		display: -moz-box;
+				display: -webkit-box;
+			    display: box;
+				padding: 36*@rem 70*@rem;
+				.header{
+					margin-top: 50*@rem;
+					width: 75*@rem;
+					height: 75*@rem;
+					border-radius: 100%;
+					overflow: hidden;
+					img{
+						width: 100%;
+					}
+				}
+				.Msg{
+					padding-left: 40*@rem;
+					p{
+						font-size: 28*@rem;
+						height: 28*@rem;
+						color:#acaab8;
+						padding: 22*@rem 0;
+						i{
+							color: #2f2e37;
+							&.blue{
+								color: #1a92ee;
+							}
+						}
+					}
+				}
+			}
+	}
+}
+.RecentlyCotainer{
+	background: #fff;
+	padding-left: 58*@rem;
+	li{
+   		display: -moz-box;
+		display: -webkit-box;
+	    display: box;
+	    overflow: hidden;
+		padding: 36*@rem 58*@rem 36*@rem 0;
+		border-bottom: 1px solid #ddd;
+		.header{
+			width: 162*@rem;
+			height: 162*@rem;
+			img{
+				width: 100%;
+			}
+		}
+		.Msg{
+			padding-left: 58*@rem;
+			h3{
+				font-size: 28*@rem;
+				padding: 6*@rem 0;
+				color:#2f2e37;
+			}
+			p{
+				font-size: 24*@rem;
+				color:#acaab8;
+				padding: 6*@rem 0;
+				i{
+					color: #2f2e37;
+					&.blue{
+						color: #1a92ee;
+					}
+				}
+				&.blue{
+					color: #1a92ee;
+					padding: 20*@rem 0;
+				}
+				em{
+					width: 26*@rem;
+					height: 26*@rem;
+					margin-right: 5*@rem;
+					vertical-align: bottom;
+					background: url(../images/time.png) no-repeat center;
+					background-size: 26*@rem;
+					display: inline-block;
+				}
+			}
+			.time{
+				color:#1a92ee;
+				font-size: 40*@rem;
+			}
+
+		}
+	}
+}
 
 
 /*一元夺宝*/
@@ -434,7 +541,38 @@
 	.treasure-box .content .surplus {font-size: @font20; color: @black; line-height: 28*@rem;}
 	.treasure-box .content .surplus i {font-size: @font20; color: @blue;}
 	.treasure-box .content .join { font-size: @font24;width: 150*@rem; height: 52*@rem;line-height: 52*@rem; background: #1a92ee; display: block; position: absolute; bottom: 10*@rem; right:0; text-align: center; color: #fff; border-radius: 5*@rem; border: none;}
-
+	/*收货地址*/
+	.address-box { overflow: hidden; border-top: 15*@rem @lightgray solid;}
+	.address-box:first-child{border-top: 0;}
+	.address-box .address-info {display: -moz-box;display: -webkit-box;display: box; overflow: hidden; font-size: @font28; padding:30*@rem 40*@rem; border-bottom:1px @linegray solid;color:@darkgray;}
+	.address-box .address-name { width:17%;margin-right:3%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; line-height: 40*@rem; }
+	.address-box .address-tel { width:80%; line-height: 40*@rem; }
+	.address-box .address-tel i {font-size: @font24; display: block; color: #acaab8; line-height: 32*@rem;}
+	.address-box .address-action {display: -moz-box;display: -webkit-box;display: box; overflow: hidden; font-size: @font28; padding:20*@rem 40*@rem; color:@darkgray; position: relative;}
+	.address-box .address-default { line-height: 52*@rem;}
+	.address-box .address-default i { border: 1px #6a6970 solid; width: 36*@rem;height: 36*@rem; display: inline-block; vertical-align: middle; border-radius: 50%; box-sizing: border-box;}
+	.address-box .address-default.curr i { border: 0px; background: url(../images/address-gou.png) no-repeat 0 0; background-size:36*@rem auto;}
+	.address-box .address-modify,.address-box .address-del { width: 150*@rem; height: 50*@rem;border:1px #1a92ee solid; border-radius: 5*@rem; color: #1a92ee; text-align: center; position: absolute; top: 20*@rem; right: 210*@rem;line-height: 50*@rem;background:@white; }
+	.address-box .address-del { border:1px #acaab8 solid; color: #acaab8; top: 20*@rem; right: 40*@rem;}
+	.address-add { padding: 36*@rem 44*@rem; }
+	.address-add a { width: 100%; height: 76*@rem; line-height: 76*@rem; color: @white; font-size: @font30; text-align: center; background: #1a92ee; border-radius: 10*@rem; display: block;}
+	/*增加收货地址*/
+	.address-list {overflow: hidden;}
+	.address-list li { font-size: @font28; min-height: 62*@rem; border-bottom:1px @linegray solid; line-height: 62*@rem; padding: 17*@rem 40*@rem; color:@darkgray; position: relative; }
+	.address-list li input { border: 0; height: 50*@rem; width: 75%;}
+	.address-list li textarea { font-size: @font24; border: 0; height: 150*@rem;line-height: 50*@rem; width: 100%;}
+	.address-list li.array span { height: 50*@rem;width: 75%; display:inline-block; vertical-align: middle;line-height: 50*@rem; text-align:right; color:@gray;}
+	.address-list li.array:before { content: ""; position: absolute;width:15*@rem;height:15*@rem;
+  background: #fff;border: 1px solid #b1b3bf; border-bottom: none;border-left: none;transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);right: 40*@rem;top:40*@rem;}
+	/*默认收货地址按钮*/
+	.address-dbox { float: right;}
+    .address-dbox input[type=checkbox]{display: none;}
+	.default-btn{width: 120*@rem;height: 60*@rem;box-sizing: border-box;border-radius: 60*@rem;-webkit-border-radius: 60*@rem;float: right;background: #fff; box-shadow: 0px 0px 5px rgba(0,0,0,.5);}
+	.default-btn .rdobox{visibility: hidden;display: none;height: 0;width: 0;margin: 0;padding: 0;}
+	.default-btn i{display: block; float: left;width: 60*@rem;height: 60*@rem;background: #fffefe;position: relative;border-radius: 60*@rem;-webkit-border-radius: 60*@rem;box-sizing: border-box;box-shadow: 0px 0px 5px rgba(0,0,0,.5);}
+	#isDefault:checked+.default-btn {background: #1a92ee;}
+	#isDefault:checked+.default-btn i{float: right; } 
 
 
 

@@ -8,7 +8,7 @@ import BuyPop from '../components/BuyPop';
 import { getPrecent } from '../utils';
 
 
-class GoodsInfo extends React.Component {
+class HistoryDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,7 +39,7 @@ class GoodsInfo extends React.Component {
     	if(this.state.loading){
     		return(<div>loading</div> )
     	}else{
-    		const { GoodsInfo,Config } = this.props; 
+    		const { GoodsInfo } = this.props; 
     		const params = {
 	            pagination: '.swiper-pagination',
 				paginationType: 'fraction',
@@ -49,12 +49,6 @@ class GoodsInfo extends React.Component {
     		const {orderMain,salesGoods} = GoodsInfo.data;
     		return(
     			<div>
-		          <BuyPop
-		            show={this.state.isShow}
-		            item={this.state.item}
-		            config= {Config}
-		            closed={()=>this.setState({isShow:false})}
-            		submit={this.buy.bind(this)}/>
     			<div >
 	                <Swiper {...params} >
 	                {salesGoods.goodsPic.split(",").map((item)=>(
@@ -79,7 +73,7 @@ class GoodsInfo extends React.Component {
                 			<Link to="#">商品详情</Link>
                 		</li>
                 		<li>
-                			<Link to={`HistoryList`} query={{barcode: salesGoods.barcode, goodsNo:salesGoods.goodsNo}}>往期赢家晒单</Link>
+                			<Link to={`HistoryList`} query={{barcode: salesGoods.barcode}}>往期赢家晒单</Link>
                 		</li>
                 		<li>
                 			<Link to="#">往期揭晓</Link>
@@ -131,7 +125,7 @@ class GoodsInfo extends React.Component {
   }
 
 }
-GoodsInfo.propTypes = {
+HistoryDetail.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
 }
@@ -145,18 +139,12 @@ function mapStateToProps(state){
     isFetching: false,
     items: {}
   }
-  const {
-    items: Config
-  } = postsByApi["buyNumConfig"] || {
-    items: {}
-  }
   return {
     GoodsInfo,
-    Config,
     isFetching
   }
 }
 
 
-export default connect(mapStateToProps)(GoodsInfo);
+export default connect(mapStateToProps)(HistoryDetail);
 

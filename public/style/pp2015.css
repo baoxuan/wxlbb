@@ -28,9 +28,9 @@ input::-webkit-inner-spin-button{
     margin: 0; 
 }
 
-body{
+/*body{
     background: #f0f0f0;
-}
+}*/
 
     /*public*/
     .txtd{text-decoration: underline;}
