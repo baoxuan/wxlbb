@@ -17,7 +17,7 @@ class addressList extends React.Component {
         this.props.dispatch(reset("modifyAddress"));
     }
     componentDidMount() {
-        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
         this.props.dispatch(fetchPosts("queryAddressInfo",header));
 
     }
@@ -25,7 +25,11 @@ class addressList extends React.Component {
       if(nextProps.addressList.errorCode === 0){
         this.setState({
             loading:false,
-            isChecked:(cookie.load('isDefault')==1)?true:false
+            isChecked:(cookie.load('isDefault')==1)?true:false,
+            provinceIndex:'-1',
+            cityIndex:'-1',
+            city:"",
+            area:""
         })
 
       }
@@ -49,7 +53,7 @@ class addressList extends React.Component {
             address = ReactDOM.findDOMNode(this.refs.address).value,
             isdefault=(ReactDOM.findDOMNode(this.refs.isdefault).checked==true)?1:0;
         //添加地址
-        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
         const params = {"recordId":recordId,"consigneeName":name,"consigneePhone":phone,"province":province,"city":city,"area":area,"address":address,"isDefault":isdefault}
         this.props.dispatch(fetchPosts("modifyAddress",header,params));
         event.preventDefault();
@@ -61,24 +65,58 @@ _onClick(){
     isChecked:!this.state.isChecked
   })
 }
+provinceChange(event){
+        var e = event.target;
+        this.setState({
+            provinceIndex:e.options[e.selectedIndex].getAttribute("data-index")
+        })
+    }
+    cityChange(event){
+        var e = event.target;
+        this.setState({
+            cityIndex:e.options[e.selectedIndex].getAttribute("data-index")
+        })
+    }
     render() {
 
         if(this.state.loading){
-            return(<div className="loading">loading</div>)
+            return(<div className="loading"><span>loading</span></div>)
         }else{
             const {addressList,modifyAddress} = this.props;
+            const areaJson= window.__CITY__;
             return(
           <div >
 
-
   <ul className="address-list">
   <input type="hidden" name="recordId" ref="recordId" value={cookie.load('recordId')} />
-  <input type="hidden" name="province" ref="province" value={cookie.load('province')} />
-  <input type="hidden" name="city" ref="city" value={cookie.load('city')} />
-  <input type="hidden" name="area" ref="area" value={cookie.load('area')} />
     <li>收货人 <input type="text" name="consigneeName" ref="consigneeName" defaultValue={cookie.load('consigneeName')} /></li>
     <li>手机号码 <input type="text" maxLength="11" name="consigneePhone" ref="consigneePhone" defaultValue={cookie.load('consigneePhone')} /></li>
-    <li className="array" onClick={this.selectArea}>所在地区 <span>{cookie.load('province')}{cookie.load('city')}{cookie.load('area')}</span> <i></i> </li>
+    <li>省份&nbsp;
+        <select name="province" onChange={this.provinceChange.bind(this)} ref="province">
+            <option key="-1" value="-1" data-index="-1">{cookie.load('province')}</option>
+            {areaJson.map((item,index)=>(   
+                <option key={index} data-index={index} value={item.name} >{item.name}</option>
+            ))}
+        </select>
+    </li>
+    <li>城市&nbsp;
+        <select name="city" onChange={this.cityChange.bind(this)} ref="city">
+            <option key="-1" value="-1"     data-index="-1">{cookie.load('city')}</option>
+            {(this.state.provinceIndex=="-1")?"":
+            areaJson[this.state.provinceIndex].city.map((item,index)=>(   
+                <option key={index} data-index={index} value={item.name} >{item.name}</option>
+            ))}
+        </select>
+    </li>
+    <li>县区&nbsp;
+        <select name="area"  ref="area">
+            <option key="-1" value="-1" data-index="-1">{cookie.load('area')}</option>
+            {(this.state.cityIndex=="-1")?"":
+            areaJson[this.state.provinceIndex].city[this.state.cityIndex].area.map((item,index)=>(   
+                <option key={index} data-index={index} value={item}>{item}</option>
+            ))}
+        </select>
+    </li>
     <li><textarea name="address" ref="address" id="" cols="30" rows="10" defaultValue={cookie.load('address')} ></textarea></li>
     <li className="default">设为默认地址
         <div className="address-dbox">

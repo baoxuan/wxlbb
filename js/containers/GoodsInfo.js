@@ -1,10 +1,11 @@
 import React, {Component, PropTypes}from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions';
+import { fetchPosts,reset } from '../actions';
 import { Link } from 'react-router'
 import Swiper from 'react-id-swiper';
 
 import BuyPop from '../components/BuyPop';
+import Header from '../components/Header';
 import { getPrecent } from '../utils';
 
 
@@ -18,12 +19,13 @@ class GoodsInfo extends React.Component {
         }
     }
     componentWillMount() {
-        document.title="一元夺宝";
+        document.title="详情";
     }
     componentDidMount() {
         const header= {"X-Client-ID":'123456'};
         const params = this.props.location.query;
-        this.props.dispatch(fetchPosts("getGoodsInfo", header, params))
+        // this.props.dispatch(reset("getGoodsInfo"));
+        this.props.dispatch(fetchPosts("getGoodsInfo", header, params));
     }
     componentWillReceiveProps(nextProps) {
     	console.log(nextProps);
@@ -37,7 +39,7 @@ class GoodsInfo extends React.Component {
 
     render() {
     	if(this.state.loading){
-    		return(<div>loading</div> )
+    		return(<div className="loading"><span>loading</span></div>)
     	}else{
     		const { GoodsInfo,Config } = this.props; 
     		const params = {
@@ -76,13 +78,13 @@ class GoodsInfo extends React.Component {
                 <div className="infoList">
                 	<ul>
                 		<li>
-                			<Link to="#">商品详情</Link>
+                			<Link to={{pathname:"GoodsDetail",state:{imageTextDetail: salesGoods.imageTextDetail} } }>商品详情</Link>
                 		</li>
                 		<li>
-                			<Link to={`HistoryList`} query={{barcode: salesGoods.barcode, goodsNo:salesGoods.goodsNo}}>往期赢家晒单</Link>
+                			<Link to={{pathname:"winShowInfo", query:{barcode: salesGoods.barcode} }}>往期赢家晒单</Link>
                 		</li>
                 		<li>
-                			<Link to="#">往期揭晓</Link>
+                			<Link to={{pathname:"HistoryList", query:{barcode: salesGoods.barcode, goodsNo:salesGoods.goodsNo}} }>往期揭晓</Link>
                 		</li>
                 	</ul>
                 </div>
@@ -105,7 +107,9 @@ class GoodsInfo extends React.Component {
                 		)}
                 	</ul>
                 </div>
+                <div className="BtnBox">
                 <button className="blueBtn" onClick={this.join.bind(this, salesGoods)}>立即参与</button>
+                </div>
                 </div>
     			)
     	}
@@ -123,17 +127,25 @@ class GoodsInfo extends React.Component {
         this.props.dispatch(fetchPosts("buyNumConfig",header,params));
 
   }
-  buy(e){//提交表单
+  buy(Msg){//提交表单
     this.setState({
       isShow:false
     })
-    console.log(e);
+    this.context.router.push({
+        pathname:"/pay",
+        state:{
+            Msg:Msg
+        }
+    });
   }
 
 }
 GoodsInfo.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
+}
+GoodsInfo.contextTypes = {
+    router:React.PropTypes.object
 }
 
 function mapStateToProps(state){

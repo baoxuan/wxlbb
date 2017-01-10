@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import merge from 'lodash/merge'
 
 import BuyPop from '../components/BuyPop';
+import Header from '../components/Header';
 import { getPrecent } from '../utils';
 
 
@@ -18,7 +19,7 @@ class HistoryList extends React.Component {
         }
     }
     componentWillMount() {
-        document.title="一元夺宝";
+        document.title="往期揭晓";
     }
     componentDidMount() {
         const header= {"X-Client-ID":'123456'};
@@ -37,15 +38,14 @@ class HistoryList extends React.Component {
 
     render() {
     	if(this.state.loading){
-    		return(<div>loading</div> )
+    		return(<div className="loading"><span>loading</span></div> )
     	}else{
     		const { HistoryList } = this.props;
-            console.log(HistoryList);
-
+            if(HistoryList.data.length >0){
     		return(
     			<div>
                 {HistoryList.data.map((item)=>
-                <Link to={`HistoryDetail`} query={{goodsno: this.props.location.query.goodsNo}} className="historyCotainer">
+                <div key={item.periodsNum} className="historyCotainer">
                 	<div className="title">第{item.periodsNum}期 <i>揭晓时间：{item.announcedTime}</i></div>
                 	<ul className="historyList">
                 		<li>
@@ -62,10 +62,13 @@ class HistoryList extends React.Component {
                 			</div>
                 		</li>
                 	</ul>
-                </Link>
+                </div>
                )}
                 </div>
     			)
+            }
+            return(<div className="Loading">未找到相关内容</div> )
+
     	}
 
     }

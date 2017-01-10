@@ -95,7 +95,7 @@ class BuyPop extends Component{
 
 	}
 	_submit(){
-		let params = {goodsName:this.props.item.goodsName,barcode:this.props.item.barcode,joinNum:this.state.value, periodsNum:this.props.item.periodsNum}
+		let params = {barcode:this.props.item.barcode,joinNum:this.state.value, periodsNum:this.props.item.periodsNum}
 		this.props.submit(params);
 		this.setState({
 			value:1

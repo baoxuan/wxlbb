@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import merge from 'lodash/merge'
 
 import BuyPop from '../components/BuyPop';
+import Header from '../components/Header';
 import { getPrecent } from '../utils';
 
 
@@ -37,24 +38,27 @@ class RecentlyAnnounced extends React.Component {
 
     render() {
     	if(this.state.loading){
-    		return(<div>loading</div> )
+    		return(<div className="loading"><span>loading</span></div>)
     	}else{
     		const { RecentlyAnnounced } = this.props;
             console.log(RecentlyAnnounced);
 
     		return(
-                <div  className="RecentlyCotainer">
+                <div>
+                <div className="RecentlyCotainer">
                 	<ul>
                 {RecentlyAnnounced.data.salesGoods.map((item)=>{
 
 	            const imgUrl = item.goodsPic ? item.goodsPic.split(",")[0]:item.goodsPic;
                 return(
-                		<li key={item.periodsNum}>
+                     <Link key={item.periodsNum} to={{pathname:"HistoryDetail", query:{goodsno:item.goodsNo}} }>
+                		<li >
+
                 				<div className="header">
                 					<img src={imgUrl}/>
                 				</div>
                 				<div className="Msg">
-                                    <h3>{item.goodsName}</h3>
+                                    <div className="title">{item.goodsName}</div>
                                     <p>期号：<i>{item.periodsNum}</i></p>
                                     {item.winning?
                                     	(<div><p>幸运号码：<i className="blue">{item.winningRecord.luckyNum}</i></p>
@@ -64,23 +68,12 @@ class RecentlyAnnounced extends React.Component {
 	                				:(<div><p><i className="blue">即将揭晓</i></p></div>)}
                 				</div>
                 		</li>
+                    </Link>
 
             		)}
                )}
-                		<li>
-                				<div className="header">
-                					<img src=""/>
-                				</div>
-                				<div className="Msg">
-                                    <h3>ppp</h3>
-                                    <p>期号：<i>1111</i></p>
-                                    <div>
-                                    <p className="blue"><em></em>即将揭晓</p>
-	                				<div className="time">03:32:14</div>
-	                				</div>
-                				</div>
-                		</li>
                 	</ul>
+                </div>
                 </div>
     			)
     	}

@@ -17,10 +17,21 @@ class addressList extends React.Component {
         this.props.dispatch(reset("modifyAddress"));
     }
     componentDidMount() {
-        const header= { "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+        const query= this.props.location.query;
+        let qToken,qName;
+        if(query.token){
+            qToken = query.token,
+            qName = query.userName;
+            cookie.save("token",query.token);
+            cookie.save("userName",query.userName);
+        }else{
+            qToken = cookie.load("token"),
+            qName = cookie.load("userName");
+        }
+        const header= { "X-Client-ID":'123456',"X-Long-Token":qToken}
         this.props.dispatch(fetchPosts("queryAddressInfo",header));
-        console.log("componentDidMount");
     }
+    
     componentWillReceiveProps(nextProps) {
         if(nextProps.addressList.errorCode === 0){
             this.setState({
@@ -29,40 +40,42 @@ class addressList extends React.Component {
         }
         if(nextProps.delAddress.errorCode ===0){
             this.props.dispatch(reset("delAddress"));
-            const header= { "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+            const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
             this.props.dispatch(fetchPosts("queryAddressInfo",header));
         }
         if(nextProps.modifyAddress.errorCode ===0){
             this.props.dispatch(reset("modifyAddress"));
-            const header= { "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+            const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
             this.props.dispatch(fetchPosts("queryAddressInfo",header));
         }
     }
-
-    defaultClick(item){
+    
+    defaultClick(item,event){
         //删除地址
-        const header= { "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+        const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
         const params = {"recordId":item.recordId,"consigneeName":item.consigneeName,"consigneePhone":item.consigneePhone,"province":item.province,"city":item.city,"area":item.area,"address":item.address,"isDefault":1}
         this.props.dispatch(fetchPosts("modifyAddress",header,params));
+        event.preventDefault();
+        event.stopPropagation();
     }
     delClick(recordId,event){
         //删除地址
-        const header= { "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+        const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
         const params = {"recordId":recordId}
         this.props.dispatch(fetchPosts("delAddress",header,params));
         event.preventDefault();
         event.stopPropagation();
     }
-    modifyClick(recordId,consigneeName,consigneePhone,province,city,area,address,isdefault,event){
-        cookie.save('consigneeName', consigneeName, { path: '/' });
-        cookie.save('consigneePhone', consigneePhone, { path: '/' });
-        cookie.save('province', province, { path: '/' });
-        cookie.save('city', city, { path: '/' });
-        cookie.save('area', area, { path: '/' });
-        cookie.save('address', address, { path: '/' });
-        cookie.save('isDefault', isdefault, { path: '/' });
-        cookie.save('recordId', recordId, { path: '/' });
-        this.context.router.push("/addressModify?recordId="+recordId);
+    modifyClick(item,event){
+        cookie.save('consigneeName', item.consigneeName, { path: '/' });
+        cookie.save('consigneePhone', item.consigneePhone, { path: '/' });
+        cookie.save('province', item.province, { path: '/' });
+        cookie.save('city', item.city, { path: '/' });
+        cookie.save('area', item.area, { path: '/' });
+        cookie.save('address', item.address, { path: '/' });
+        cookie.save('isDefault', item.isDefault, { path: '/' });
+        cookie.save('recordId', item.recordId, { path: '/' });
+        this.context.router.push("/addressModify?recordId="+item.recordId);
         //修改地址
         event.preventDefault();
         event.stopPropagation();
@@ -70,7 +83,7 @@ class addressList extends React.Component {
 
     render() {
         if(this.state.loading){
-            return(<div className="loading">loading</div>)
+            return(<div className="loading"><span>loading</span></div>)
         }else{
             const {addressList,delAddress,modifyAddress} = this.props;
             return(
@@ -85,7 +98,7 @@ class addressList extends React.Component {
                 </div>
                 <div className="address-action">
                   <div onClick={this.defaultClick.bind(this, item)} className={item.isDefault==1 ? "address-default curr" : "address-default"}><i></i> 默认地址</div>
-                  <button onClick={this.modifyClick.bind(this, item.recordId,item.consigneeName,item.consigneePhone,item.province,item.city,item.area,item.address,item.isDefault)} className="address-modify">编辑</button>
+                  <button onClick={this.modifyClick.bind(this, item)} className="address-modify">编辑</button>
                   <button onClick={this.delClick.bind(this,item.recordId)} className="address-del">删除</button>
                 </div>
               </div>

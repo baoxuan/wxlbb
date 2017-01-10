@@ -33,8 +33,7 @@ function posts(state = {
     case TYPES.RESET:
       return Object.assign({}, state, {
         isFetching: false,
-        items:{},
-        code:""
+        items:{}
       })
     default:
       return state

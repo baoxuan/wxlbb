@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import {requestGet, requestPost,requestGetParams,requestPostByForm} from "../utils/Api";
+import {requestGet,requestTicket, requestPost,requestGetParams,requestPostByForm} from "../utils/Api";
 import {getRandomCode} from "../utils";
 import merge from 'lodash/merge'
 
@@ -13,6 +13,14 @@ export function fetchPosts(ApiName, header, param) {
   return requestPost(ApiName,headers,params);
 }
 
+
+export function fetchTicket(ApiName, header, param) {
+  let headers = merge({"Content-Type":"application/json","X-Client-Agent":"weixin", "X-APIVersion":"2.0"}, header);
+  let params = param || "";
+  return requestTicket(ApiName,headers,params);
+}
+
+
 export function fetchGET(ApiName, params) {
   var header = {"Content-Type":"application/json", "code":params.code, "token":params.token};
   return requestGet(ApiName,header);
@@ -22,6 +30,7 @@ export function fetchGETParams(ApiName, params) {
   var header = {"Content-Type":"application/json"};
   return requestGet(ApiName, header, params);
 }
+
 
 
 //导出提交表单的方法

@@ -10,10 +10,9 @@ class Pop extends Component{
 				"pop_bg",
 				{"show":show}
 				)} onClick ={this._click.bind(this)}>
-				<div className="pop_container">
+				<div className="pop_container pop_container1">
 					<h3><div className="colsed" ></div><div className="title">{title}</div></h3>
-					<p>{content}</p>
-					<Link to="/Download">去下载</Link>
+					<Link to="/download">去下载</Link>
 				</div>
 			</div>
 			);

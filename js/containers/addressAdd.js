@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import { fetchPosts,reset } from '../actions';
 import { Link } from 'react-router';
 import ReactDOM from 'react-dom';
+import Notifications, {notify} from 'react-notify-toast';
 
+import cookie from 'react-cookie';
 
 class addressList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading:true
+            loading:true,
+            ToastShow:true           
         }
     }
     componentWillMount() {
@@ -17,25 +20,25 @@ class addressList extends React.Component {
         this.props.dispatch(reset("addAddress"));
     }
     componentDidMount() {
-        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
+        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
         this.props.dispatch(fetchPosts("queryAddressInfo",header))
     }
     componentWillReceiveProps(nextProps) {
       if(nextProps.addressList.errorCode === 0){
         this.setState({
-            loading:false
+            loading:false,            
+            provinceIndex:'-1',
+            cityIndex:'-1',
+            city:"",
+            area:""
         })
       }
       if(nextProps.addAddress.errorCode ===0){
             this.context.router.push("/address");
         }
     }
-    selectArea(event){
-        alert("选择");
-        event.preventDefault();
-        event.stopPropagation();
-    }
     addClick(event){
+        let myColor = { background: 'rgba(0,0,0,.5)', text: "#FFFFFF"};
         let name = ReactDOM.findDOMNode(this.refs.consigneeName).value,
             phone = ReactDOM.findDOMNode(this.refs.consigneePhone).value,
             province = ReactDOM.findDOMNode(this.refs.province).value,
@@ -43,36 +46,86 @@ class addressList extends React.Component {
             area = ReactDOM.findDOMNode(this.refs.area).value,
             address = ReactDOM.findDOMNode(this.refs.address).value,
             isdefault=(ReactDOM.findDOMNode(this.refs.isdefault).checked==true)?1:0;
+        if(name==""){
+            notify.show("请输入姓名", "custom", 1500, myColor);
+        }else if(phone==""){
+            notify.show("请输入手机号", "custom", 1500, myColor);
+        }else if(province=="-1"){
+            notify.show("请选择省份", "custom", 1500, myColor);
+        }else if(city=="-1"){
+            notify.show("请选择城市", "custom", 1500, myColor);
+        }else if(area=="-1"){
+            notify.show("请选择县区", "custom", 1500, myColor);
+        }else if(address==""){
+            notify.show("请输入地址", "custom", 1500, myColor);
+        }else{
         //添加地址
-        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'88eeab5ee8b94a8ab8ff552e94967ba7'}
-        const params = {"consigneeName":name,"consigneePhone":phone,"province":province,"city":city,"area":area,"address":address,"isDefault":isdefault}
-        this.props.dispatch(fetchPosts("addAddress",header,params));
+            const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
+            const params = {"consigneeName":name,"consigneePhone":phone,"province":province,"city":city,"area":area,"address":address,"isDefault":isdefault}
+            this.props.dispatch(fetchPosts("addAddress",header,params));
+        }
         event.preventDefault();
         event.stopPropagation();
     }
+    provinceChange(event){
+        var e = event.target;
+        this.setState({
+            provinceIndex:e.options[e.selectedIndex].getAttribute("data-index")
+        })
+    }
+    cityChange(event){
+        var e = event.target;
+        this.setState({
+            cityIndex:e.options[e.selectedIndex].getAttribute("data-index")
+        })
+    }
     render() {
         if(this.state.loading){
-            return(<div className="loading">loading</div>)
+            return(<div className="loading"><span>loading</span></div>)
         }else{
             const {addressList,addAddress} = this.props;
+            const areaJson= window.__CITY__;
             return(
-        	<div >
-
-
+    <div >
+    <Notifications />
   <ul className="address-list">
-  <input type="hidden" name="province" ref="province" value="浙江" />
-  <input type="hidden" name="city" ref="city" value="杭州" />
-  <input type="hidden" name="area" ref="area" value="西湖区" />
     <li>收货人 <input type="text" name="consigneeName" ref="consigneeName" /></li>
     <li>手机号码 <input type="text" maxLength="11" name="consigneePhone" ref="consigneePhone" /></li>
-    <li className="array" onClick={this.selectArea}>所在地区 <span></span> <i></i> </li>
+    <li>省份&nbsp;
+        <select name="province" onChange={this.provinceChange.bind(this)} ref="province">
+            <option key="-1" value="-1" data-index="-1">请选择省份</option>
+            {areaJson.map((item,index)=>(   
+                <option key={index} data-index={index} value={item.name} >{item.name}</option>
+            ))}
+        </select>
+    </li>
+    <li>城市&nbsp;
+        <select name="city" onChange={this.cityChange.bind(this)} ref="city">
+            <option key="-1" value="-1"     data-index="-1">请选择城市</option>
+            {(this.state.provinceIndex=="-1")?"":
+            areaJson[this.state.provinceIndex].city.map((item,index)=>(   
+                <option key={index} data-index={index} value={item.name} >{item.name}</option>
+            ))}
+        </select>
+    </li>
+    <li>县区&nbsp;
+        <select name="area"  ref="area">
+            <option key="-1" value="-1" data-index="-1">请选择县区</option>
+            {(this.state.cityIndex=="-1")?"":
+            areaJson[this.state.provinceIndex].city[this.state.cityIndex].area.map((item,index)=>(   
+                <option key={index} data-index={index} value={item}>{item}</option>
+            ))}
+        </select>
+    </li>
     <li><textarea name="address" ref="address" id="" cols="30" rows="10" placeholder="填写详情地址，例如街道名称，楼层和门牌号等"></textarea></li>
     <li className="default">设为默认地址 
       <div className="address-dbox">
-        <input name="isDefault" type="checkbox" id="isDefault" value="1" ref="isdefault" />
-          <div className="default-btn">       
-            <label htmlFor="isDefault"></label>
-          </div>  
+          <label htmlFor="isDefault" >
+          <input name="isDefault" type="checkbox" id="isDefault" value="1" ref="isdefault"   />
+          <div className="default-btn">
+            <i></i>
+          </div>
+          </label>
       </div>
     </li>
   </ul>

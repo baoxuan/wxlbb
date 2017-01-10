@@ -60,6 +60,21 @@ export function requestPost(ApiName, header, params){
     };
 }
 
+export function requestTicket(ApiName, header, params){
+  let url = baseUrl+API[ApiName];
+  return dispatch => {
+    return fetch(url,
+      {
+        method: 'POST',
+        headers: header,
+        body:  JSON.stringify(params)
+      })
+      .then(response => response.json())
+      .then(json => dispatch(receiveDone(ApiName, json)));
+    };
+}
+
+
 // 用于表单提交，有错误校验
 export function requestPostByForm(ApiName, header, params){
   let url = baseUrl+API[ApiName];
