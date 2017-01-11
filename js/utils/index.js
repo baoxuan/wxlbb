@@ -38,8 +38,7 @@ export function FormatMoney(s) {
     return decimal;
   }//取两位小数
  export function getPrecent(decimal1, decimal2){
-    //decimal1:剩余 decimal2：总量
-    var decimal = (decimal1 == decimal2)?"0%" : Math.floor((decimal2-decimal1)/decimal2*100)+"%";
+    var decimal = (decimal1 == decimal2)?"100%" : Math.floor((decimal2-decimal1)/decimal2*100)+"%";
     return decimal;
   }//取两位小数
  export function getTime(t){

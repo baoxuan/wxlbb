@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import { Link, hashHistory } from 'react-router';
+import { Link } from 'react-router';
 
 class Pop extends Component{
 	render(){
@@ -12,16 +12,13 @@ class Pop extends Component{
 				)} onClick ={this._click.bind(this)}>
 				<div className="pop_container pop_container1">
 					<h3><div className="colsed" ></div><div className="title">{title}</div></h3>
-					<button onClick={this._jump.bind(this)}>去下载</button>
+					<Link to="/download">去下载</Link>
 				</div>
 			</div>
 			);
 	}
 	_click(){
 		this.props.popClick();
-	}
-	_jump(){
-		 window.location.href= "http://wx.hzyisu.com/download.html"
 	}
 
 }

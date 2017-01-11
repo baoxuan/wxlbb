@@ -1,6 +1,6 @@
 
-// export const baseUrl = "http://106.14.41.55/";
-export const baseUrl = "https://api.hzyisu.com/";
+export const baseUrl = "http://106.14.41.55/";
+// export const baseUrl = "https://api.hzyisu.com/";
 
 // export const baseUrl = "/";
 
