@@ -67,7 +67,7 @@ class HistoryList extends React.Component {
                 </div>
     			)
             }
-            return(<div className="Loading">未找到相关内容</div> )
+            return(<div className="loading"><span>未找到相关内容</span></div> )
 
     	}
 

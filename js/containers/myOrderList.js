@@ -102,7 +102,7 @@ class myOrderList extends React.Component {
                            <span>{status}</span>
                             {(item.showJoin==true)?<Link to={'GoodsInfo'} query={{goodsNo: item.goodsNoNext}} className="again">再次参与</Link>:""}
                             {(item.showLogistics==true)?<Link to={'logisticsInfo'} query={{orderId: item.orderId}} className="again">查看物流</Link>:""}
-                            {(item.showOrderShow==false)?<Link to={'comment'} state={{item: item}} className="again">去晒单</Link>:""}
+                            {(item.showOrderShow==true)?<Link to={'comment'} state={{item: item}} className="again">去晒单</Link>:""}
                             {(item.showPrintAddress==true)?<Link to={'addressList'} className="again">填写地址</Link>:""}
                         </p>
                     </div>

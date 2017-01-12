@@ -12,7 +12,7 @@ class BuyPop extends Component{
 	}
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.config.errorCode === 0){
-			this.setState({total:nextProps.config.data.remindValue})
+			this.setState({total:nextProps.item.surplusJoinNum})
 		}
 	}
 	render(){
@@ -48,7 +48,7 @@ class BuyPop extends Component{
 		             <div className="msg">剩余<span>{this.state.total}次</span></div>
 		             </div>
 					<div className="footer">
-						<div className="total">合计：<span>￥{this.state.value}</span></div>
+						<div className="total">合计：<span>￥{this.state.value}.00</span></div>
 						<button className="buyBtn" onClick={this._submit.bind(this)}>立即购买</button>
 					</div>
 				</div>
@@ -62,7 +62,7 @@ class BuyPop extends Component{
 	_onChange(event) {
 	    this.setState({
 	      value: event.target.value,
-	      total:this.props.config.data.remindValue - event.target.value
+	      total:this.props.item.surplusJoinNum - event.target.value
 	    });
 	}
 	_closed(){
@@ -74,7 +74,7 @@ class BuyPop extends Component{
 	_select(e){
 		this.setState({
 			value:e.currentTarget.dataset.value,
-			total:this.props.config.data.remindValue - e.currentTarget.dataset.value
+			total:this.props.item.surplusJoinNum - e.currentTarget.dataset.value
 		});
 	}
 	_reduce(){
@@ -86,7 +86,7 @@ class BuyPop extends Component{
 		}
 	}
 	_add(){
-		if(this.state.value< this.props.config.data.remindValue ){
+		if(this.state.value< this.props.item.surplusJoinNum ){
 			this.setState({
 				value:Number(this.state.value)+1,
 				total:Number(this.state.total) -1

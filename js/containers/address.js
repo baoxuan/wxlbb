@@ -40,19 +40,19 @@ class addressList extends React.Component {
         }
         if(nextProps.delAddress.errorCode ===0){
             this.props.dispatch(reset("delAddress"));
-            const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
+            const header= { "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
             this.props.dispatch(fetchPosts("queryAddressInfo",header));
         }
         if(nextProps.modifyAddress.errorCode ===0){
             this.props.dispatch(reset("modifyAddress"));
-            const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
+            const header= { "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
             this.props.dispatch(fetchPosts("queryAddressInfo",header));
         }
     }
     
     defaultClick(item,event){
         //删除地址
-        const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
+        const header= { "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
         const params = {"recordId":item.recordId,"consigneeName":item.consigneeName,"consigneePhone":item.consigneePhone,"province":item.province,"city":item.city,"area":item.area,"address":item.address,"isDefault":1}
         this.props.dispatch(fetchPosts("modifyAddress",header,params));
         event.preventDefault();
@@ -60,7 +60,7 @@ class addressList extends React.Component {
     }
     delClick(recordId,event){
         //删除地址
-        const header= { "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
+        const header= { "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
         const params = {"recordId":recordId}
         this.props.dispatch(fetchPosts("delAddress",header,params));
         event.preventDefault();

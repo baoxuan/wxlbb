@@ -47,7 +47,7 @@ class app extends React.Component {
     }
     addList(lists){
       this.setState({isLoading:lists.length == 10 ? true:false});
-        if(this.state.PageIndex == 1){
+        if(this.state.pageindex == 1){
             this.setState({listItems:lists});
         }else{
          this.setState({listItems:this.state.listItems.concat(lists)});
@@ -58,7 +58,7 @@ class app extends React.Component {
         let scrollTop = document.body.scrollTop,
             innerHeight = window.innerHeight,
             scrollHeight = document.body.scrollHeight,
-            PageIndex = this.state.PageIndex,
+            pageindex = this.state.pageindex,
             query = this.props.location.query;
 
             if(scrollTop + innerHeight >= scrollHeight && this.state.isLoading ){

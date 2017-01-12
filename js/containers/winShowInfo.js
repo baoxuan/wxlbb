@@ -72,37 +72,40 @@ class winShowInfo extends React.Component {
             return(<div className="loading"><span>loading</span></div>)
         }else{
             const {winShowInfo} = this.props;
-            return(
-        	<div >
-            
-            {this.state.listItems.map((item)=>{
-                const goodsPics = item.goodsPic && item.goodsPic.split(","),
-                evaluatePic = item.evaluatePic &&  item.evaluatePic.split(",")
+            if(winShowInfo.length > 0){
                 return(
+                	<div >
+                    {this.state.listItems.map((item)=>{
+                        const goodsPics = item.goodsPic && item.goodsPic.split(","),
+                        evaluatePic = item.evaluatePic &&  item.evaluatePic.split(",")
+                        return(
 
-                <Link to={{pathname:'myShowDetail',query:{recordid:item.recordId}}} className="mysun-list" key={item.createTime}>
-                <div className="mysun-title">
-                    <div className="time">{item.createTime}</div>
-                    <div className="pic"><img src={item.userHeadImg} alt="" /></div>
-                    <div className="content">{item.userName}</div>
-                </div>
-                <div className="mysun-info">{item.evaluateContent||"晒单没有任何评语"}</div>
-                <div className="mysun-pic">
-                    {(() => {
-                        var pics = [];
-                        for (var i=0; i < evaluatePic.length; i++) {
-                            pics.push(<img src={evaluatePic[i]} key={evaluatePic[i]} />);
-                        }
-                        return pics;
-                    })()}
-                </div>
-                
-            </Link>
-            )
-            })}
-
-             </div>
-        	)
+                        <Link to={{pathname:'myShowDetail',query:{recordid:item.recordId}}} className="mysun-list" key={item.createTime}>
+                        <div className="mysun-title">
+                            <div className="time">{item.createTime}</div>
+                            <div className="pic"><img src={item.userHeadImg} alt="" /></div>
+                            <div className="content">{item.userName}</div>
+                        </div>
+                        <div className="mysun-info">{item.evaluateContent||"晒单没有任何评语"}</div>
+                        <div className="mysun-pic">
+                            {(() => {
+                                var pics = [];
+                                for (var i=0; i < evaluatePic.length; i++) {
+                                    pics.push(<img src={evaluatePic[i]} key={evaluatePic[i]} />);
+                                }
+                                return pics;
+                            })()}
+                        </div>
+                    </Link>
+                    )
+                    })}
+                     </div>
+            	)
+            }else{
+                return(
+              <div className="loading"><span>未找到相关内容</span></div>
+              )
+            }
         }
     }
 }

@@ -53,7 +53,7 @@ class addressList extends React.Component {
             address = ReactDOM.findDOMNode(this.refs.address).value,
             isdefault=(ReactDOM.findDOMNode(this.refs.isdefault).checked==true)?1:0;
         //添加地址
-        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
+        const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
         const params = {"recordId":recordId,"consigneeName":name,"consigneePhone":phone,"province":province,"city":city,"area":area,"address":address,"isDefault":isdefault}
         this.props.dispatch(fetchPosts("modifyAddress",header,params));
         event.preventDefault();

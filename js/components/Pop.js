@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 class Pop extends Component{
 	render(){
@@ -12,7 +12,7 @@ class Pop extends Component{
 				)} onClick ={this._click.bind(this)}>
 				<div className="pop_container pop_container1">
 					<h3><div className="colsed" ></div><div className="title">{title}</div></h3>
-					<Link to="/download">去下载</Link>
+					<button onClick={this._jump.bind(this)}>去下载</button>
 				</div>
 			</div>
 			);
@@ -20,12 +20,15 @@ class Pop extends Component{
 	_click(){
 		this.props.popClick();
 	}
+	_jump(){
+		 window.location.href= "http://weixin.hzyisu.com/download.html"
+	}
+
 
 }
 
 Pop.propTypes = {
-	title: PropTypes.string.isRequired,
- 	content: PropTypes.string.isRequired
+	title: PropTypes.string.isRequired
 };
 
 export default Pop;

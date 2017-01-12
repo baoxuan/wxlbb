@@ -6,13 +6,16 @@ import ReactDOM from 'react-dom';
 import Notifications, {notify} from 'react-notify-toast';
 
 import cookie from 'react-cookie';
-
+import isEmpty from 'lodash/isEmpty'
 class addressList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading:true,
-            ToastShow:true           
+            provinceIndex:'-1',
+            cityIndex:'-1',
+            city:"",
+            area:""
         }
     }
     componentWillMount() {
@@ -24,17 +27,17 @@ class addressList extends React.Component {
         this.props.dispatch(fetchPosts("queryAddressInfo",header))
     }
     componentWillReceiveProps(nextProps) {
+    let myColor = { background: 'rgba(0,0,0,.5)', text: "#FFFFFF"};
       if(nextProps.addressList.errorCode === 0){
         this.setState({
-            loading:false,            
-            provinceIndex:'-1',
-            cityIndex:'-1',
-            city:"",
-            area:""
+            loading:false,
         })
       }
       if(nextProps.addAddress.errorCode ===0){
             this.context.router.push("/address");
+        }
+        if(!isEmpty(nextProps.addAddress) && nextProps.addAddress.errorCode !== 0){
+            notify.show("地址输入有误", "custom", 1500, myColor);
         }
     }
     addClick(event){
@@ -60,7 +63,7 @@ class addressList extends React.Component {
             notify.show("请输入地址", "custom", 1500, myColor);
         }else{
         //添加地址
-            const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":'469213d3d2154175a5bbc49945f2843e'}
+            const header= { "X-Client-Agent":"weixin", "X-APIVersion":"2.0", "X-Client-ID":'123456',"X-Long-Token":cookie.load("token")}
             const params = {"consigneeName":name,"consigneePhone":phone,"province":province,"city":city,"area":area,"address":address,"isDefault":isdefault}
             this.props.dispatch(fetchPosts("addAddress",header,params));
         }
