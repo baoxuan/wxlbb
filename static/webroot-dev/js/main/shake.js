@@ -22,6 +22,8 @@ if(marquee2.offsetWidth-scroll_div.scrollLeft<=0)
 var MyMar=setInterval(Marquee,speed);
 
 
+var flat = true;
+
 //摇一摇(使用DeviceMotion事件, 推荐,应为可以计算加速度)
 if(window.DeviceMotionEvent) {
     var speed = 25;    // 用来判定的加速度阈值，太大了则很难触发
@@ -34,10 +36,8 @@ if(window.DeviceMotionEvent) {
         y = acceleration.y;
         if(Math.abs(x-lastX) > speed || Math.abs(y-lastY) > speed) {
 
-
-            // 用户设备摇动了，触发响应操作
-            // 此处的判断依据是用户设备的加速度大于我们设置的阈值
-                if($(".pop_bg").is(":hidden")){
+                if($("#tip1").is(":hidden") && $("#tip2").is(":hidden") && flat){
+                    flat = false;
                     queryNum();
                 }
 
@@ -47,7 +47,7 @@ if(window.DeviceMotionEvent) {
     }, false);
 }
 
-// $("#btn").click(queryNum);
+$("#btn").click(queryNum);
 
 
 function queryNum(){
@@ -55,29 +55,24 @@ function queryNum(){
     var token = GET["token"];
     var url="activity/queryLotteryCount";
     var header={
-        'X-Client-Agent':"weixin", 
+        'X-Client-Agent':"weixin",
         'X-APIVersion':"2.0",
         'X-Client-ID':'123456',
         'X-Long-Token':token,
         };
      API.getOA(url,"",header,function(res){
         if(res.data > 0){
+
+            // 用户设备摇动了，触发响应操作
+            // 此处的判断依据是用户设备的加速度大于我们设置的阈值
+
             if (navigator.vibrate) {
                 navigator.vibrate(1000); //震动1000毫秒
             } else if (navigator.webkitVibrate) {
                 navigator.webkitVibrate(1000);
             }
 
-            var num = lottery();
-            $("#prize_box").removeClass().addClass("prize_box"+num);
-
-             if(num == 1){
-                $(".btn").attr("href","https://www.tronker.com/center/register?service=https%3A%2F%2Fwww.tronker.com%2Fwork%2Ffinancing%2Findex.html%3F_u_%3D1%26invitation%3D149204%26name%3D%25E6%259D%258E%25E6%2598%2586%25E9%25BE%2599%26channel%3Djf");
-             }else{
-                $(".btn").attr("href","http://weixin.hzyisu.com/download.html");
-             }
-
-           $("#tip1").show();
+            lottery();
         }else{
           $("#tip2").show();
         }
@@ -87,7 +82,7 @@ function queryNum(){
 
 
 
-function savePrize(prize){
+function savePrize(prize,num){
     var GET = API.GetURLParams();
     var token = GET["token"];
     var url="activity/savePrizeRecord";
@@ -103,7 +98,18 @@ function savePrize(prize){
         };
 
      API.postOA(url,data,header,function(res){
-       console.log(res);
+       if(res.errorCode == 0){
+            $("#prize_box").removeClass().addClass("prize_box"+num);
+
+             if(num == 1){
+                $(".btn").attr("href","https://www.tronker.com/center/register?service=https%3A%2F%2Fwww.tronker.com%2Fwork%2Ffinancing%2Findex.html%3F_u_%3D1%26invitation%3D149204%26name%3D%25E6%259D%258E%25E6%2598%2586%25E9%25BE%2599%26channel%3Djf");
+             }else{
+                $(".btn").attr("href","http://weixin.hzyisu.com/download.html");
+             }
+
+           $("#tip1").show();
+           flat = true;
+       }
      })
 
 }
@@ -115,22 +121,16 @@ function lottery(){
     // 1 15% 新人理财， 2 17%用户iphone 3 17% ipad Air 4  17% 小米平衡车 5  64寸乐视TV 6 17%石油卡
     var Number = parseInt(Math.random()*100);
     if(Number >=0 && Number < 15){
-        savePrize("新人理财");
-        return 1;
+        savePrize("新人理财",1);
     }else if(Number >=15 && Number < 32){
-        savePrize("iphone抽奖机会");
-        return 2;
+        savePrize("iphone抽奖机会",2);
     }else if(Number >=32 && Number < 49){
-        savePrize("ipad air抽奖机会");
-        return 3;
+        savePrize("ipad air抽奖机会",3);
     }else if(Number >=49 && Number < 66){
-        savePrize("小米平衡车抽奖奖机会");
-        return 4;
+        savePrize("小米平衡车抽奖奖机会",4);
     }else if(Number >=66 && Number < 83){
-        savePrize("64寸乐视TV抽奖机会");
-        return 5;
+        savePrize("64寸乐视TV抽奖机会",5);
     }else{
-        savePrize("石油卡抽奖机会");
-        return 6;
+        savePrize("石油卡抽奖机会",6);
     }
 }

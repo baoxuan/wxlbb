@@ -29,7 +29,7 @@
     "main": [
       {
         "src": "../webroot-dev/js/main/shake.js",
-        "dest": "/static/js/main/94a05a8ce50b76b71ef32f27616efd67.js",
+        "dest": "/static/js/main/16a3b6f09bc443cf0cffb91e03bdd976.js",
         "deps": [
           "../webroot-dev/node_modules/jquery/dist/jquery.js",
           "../webroot-dev/js/main/rem.js",
