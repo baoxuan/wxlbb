@@ -1,0 +1,7 @@
+{
+  "name": "static",
+  "version": "2.0.0",
+  "dependencies": {
+    "coolie.js": "^2.0.8"
+  }
+}

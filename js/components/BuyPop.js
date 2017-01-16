@@ -48,7 +48,7 @@ class BuyPop extends Component{
 		             <div className="msg">剩余<span>{this.state.total}次</span></div>
 		             </div>
 					<div className="footer">
-						<div className="total">合计：<span>￥{this.state.value}.00</span></div>
+						<div className="total">合计：<span>￥{this.state.value * item.price}.00</span></div>
 						<button className="buyBtn" onClick={this._submit.bind(this)}>立即购买</button>
 					</div>
 				</div>

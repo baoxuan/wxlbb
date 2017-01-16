@@ -24,11 +24,10 @@ class GoodsInfo extends React.Component {
     componentDidMount() {
         const header= {"X-Client-ID":'123456'};
         const params = this.props.location.query;
-        // this.props.dispatch(reset("getGoodsInfo"));
+        this.props.dispatch(reset("getGoodsInfo"));
         this.props.dispatch(fetchPosts("getGoodsInfo", header, params));
     }
     componentWillReceiveProps(nextProps) {
-    	console.log(nextProps);
     	if(nextProps.GoodsInfo.errorCode === 0){
     		this.setState({
             	loading:false,

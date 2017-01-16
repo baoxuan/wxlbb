@@ -63,6 +63,27 @@ export function GetURLParams(param){
     }
     return aGets;
 }
+
+export function lottery(){
+    // 15% 新人理财，17%用户iphone 17% ipad Air 17% 小米平衡车 64寸乐视TV 17%石油卡
+    let Number = Math.floor( Math.random()* 100);
+    if(Number >=0 && Number < 15){
+        return 1;
+    }else if(Number >=15 && Number < 32){
+        return 2;
+    }else if(Number >=32 && Number < 49){
+        return 3;
+    }else if(Number >=49 && Number < 66){
+        return 4;
+    }else if(Number >=66 && Number < 83){
+        return 5;
+    }else{
+        return 6;
+    }
+}
+
+
+
 export function h5ToApp(mobileOS, ApiName, Msg){
     const OS = mobileOS.toLowerCase();
         if(mobileOS == "ios"){

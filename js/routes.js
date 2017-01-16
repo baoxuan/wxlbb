@@ -24,7 +24,8 @@ import myShowInfo from './containers/myShowInfo'// 我的晒单记录
 import myShowDetail from './containers/myShowDetail'// 晒单详情
 import winShowInfo from './containers/winShowInfo'
 import logisticsInfo from './containers/logisticsInfo'// 物流信息
-import download from './containers/download'// 物流信息
+
+
 
 
 const routes = (
@@ -54,7 +55,6 @@ const routes = (
 
 	    <Route path="/logisticsInfo" component={logisticsInfo} />
 	    <Route path="/winShowInfo" component={winShowInfo} />
-	    <Route path="/download" component={download} />
 	</Route>
 
 	)

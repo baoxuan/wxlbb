@@ -175,3 +175,95 @@
 
 	.top-kong {height: 64*@rem;}
 	.bottom-kong {height: 122*@rem;}
+
+	.showToop{
+	  background: url(../image/showToop.png) no-repeat center;
+	  background-size: 100%;
+	  height: 150px;
+	}
+	/*摇一摇页面*/
+  /*摇一摇页面*/
+ /*摇一摇页面*/
+  .shake-box {
+  	background: #d4434a;
+  	overflow: hidden;
+  	.pic{
+  		width: 100%;
+  		img{
+  			width: 100%;
+  		}
+  	}
+ 	.marquee{
+    margin: 25*@rem 30*@rem;
+    background: #f3ecdc;
+    color: #d62c2c;
+    font-size: 22px*@rem;
+    height: 50*@rem;
+    line-height: 55*@rem;
+    overflow: hidden;
+    position: relative;
+    div {
+	  display: block;
+	  width: 200%;
+	  height: 30*@rem;
+	  position: absolute;
+	  overflow: hidden;
+
+	  -webkit-animation: marquee 15s linear infinite;
+	  -moz-animation: marquee 15s linear infinite;
+	  -ms-animation: marquee 15s linear infinite;
+	  -o-animation: marquee 15s linear infinite;
+	  animation: marquee 15s linear infinite;
+		  span{
+		  	padding:0 20*@rem;
+		  }
+	  }
+	}
+ .prize{
+    margin: 25*@rem 30*@rem;
+    img{
+    	width: 100%;
+    }
+ }
+  .content{
+  	background:#f3ecdc;
+    margin: 25*@rem 30*@rem;
+  	padding: 20*@rem 30*@rem;
+  	color: #d62c2c;
+  	border-radius: 3px;
+  	h3{
+  		text-align: center;
+  		font-size: 40*@rem;
+  		padding: 10*@rem;
+  	}
+  	p{
+  		line-height: 32*@rem;
+  		padding: 5*@rem 0;
+  		font-size: 24*@rem;
+  	}
+  }
+}
+
+
+.pop_bg{
+    position: fixed;
+    width: 100%;
+    height:100%;
+    background: rgba(0,0,0,.5);
+    z-index: 99;
+    display: none;
+}
+.pop_prize{
+	position: absolute;
+	background: url(../image/pop_prize.png) no-repeat center;
+	top: 10%;
+	width: 80%;
+	height: 400px;
+}
+
+
+
+
+
+
+

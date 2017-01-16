@@ -110,12 +110,34 @@ class app extends React.Component {
             closed={()=>this.setState({isShow:false})}
             submit={this.buy.bind(this)}/>
           <div className="Header">一元夺宝 <Link to={`RecentlyAnnounced`}></Link></div>
+
           <Swiper {...params} >
-          {BannerInfo.data.banners.map((item)=>(
+          {BannerInfo.data.banners.map((item)=>{
+
+            if(item.url !== "" && item.linkType == 2){
+              return(
                   <div key={item.recordId}>
-                    <img src={item.imageUrl} />
-                  </div>
-              ))
+                    <a href={item.url} >
+                      <img src={item.imageUrl} />
+                    </a>
+                    </div>
+                    )
+              }else if(item.url !== "" && item.linkType == 1){
+                return(
+                  <div key={item.recordId}>
+                   <Link to={`GoodsInfo`} query={{goodsno: item.url}}>
+                      <img src={item.imageUrl} />
+                    </Link>
+                    </div>
+                    )
+              }else{
+                return(
+                    <div key={item.recordId}>
+                      <img src={item.imageUrl} />
+                    </div>
+                    )
+              }
+              })
            }
           </Swiper>
           <div className="notice-box">

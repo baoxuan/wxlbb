@@ -1,0 +1,54 @@
+{
+  "/download.html": {
+    "main": [
+      {
+        "src": "../webroot-dev/js/main/download.js",
+        "dest": "/static/js/main/9899315cce1886a917a27c65a710f54a.js",
+        "deps": [
+          "../webroot-dev/js/libs/zepto.js",
+          "../webroot-dev/node_modules/jquery/dist/jquery.js",
+          "../webroot-dev/js/main/rem.js",
+          "../webroot-dev/css/reset2016.css",
+          "../webroot-dev/css/public2016.css",
+          "../webroot-dev/css/yiyuan.css"
+        ]
+      }
+    ],
+    "js": [
+      {
+        "dest": "/static/js/7618cc3ce0b71d96ee5d22a862469841.js",
+        "deps": [
+          "../webroot-dev/node_modules/coolie.js/coolie.js"
+        ]
+      }
+    ],
+    "css": [],
+    "res": []
+  },
+  "/shake.html": {
+    "main": [
+      {
+        "src": "../webroot-dev/js/main/shake.js",
+        "dest": "/static/js/main/94a05a8ce50b76b71ef32f27616efd67.js",
+        "deps": [
+          "../webroot-dev/node_modules/jquery/dist/jquery.js",
+          "../webroot-dev/js/main/rem.js",
+          "../webroot-dev/css/reset2016.css",
+          "../webroot-dev/css/public2016.css",
+          "../webroot-dev/css/yiyuan.css",
+          "../webroot-dev/js/libs/ApiUtil.js"
+        ]
+      }
+    ],
+    "js": [
+      {
+        "dest": "/static/js/7618cc3ce0b71d96ee5d22a862469841.js",
+        "deps": [
+          "../webroot-dev/node_modules/coolie.js/coolie.js"
+        ]
+      }
+    ],
+    "css": [],
+    "res": []
+  }
+}
