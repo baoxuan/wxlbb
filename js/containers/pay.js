@@ -59,12 +59,12 @@ class pay extends React.Component {
 	    		<div className="payList">
 	    			<ul>
 	    				<li> 商品名称 <i>{Msg.goodsName}</i></li>
-	    				<li> 总需支付 <i>{Msg.joinNum} 开心豆</i></li>
+	    				<li> 总需支付 <i>{Msg.price} 开心豆</i></li>
 	    			</ul>
 	    		</div>
 	    		<div className="payList">
 	    			<ul>
-	    				<li> 支付方式 <i className="blue">{Msg.joinNum}.00元</i></li>
+	    				<li> 支付方式 <i className="blue">{Msg.price}.00元</i></li>
 	    				<li><span className="logo"></span>微信 <i className="gou"></i> </li>
 	    			</ul>
 	    		</div>

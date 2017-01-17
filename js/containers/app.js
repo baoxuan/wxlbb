@@ -62,8 +62,8 @@ class app extends React.Component {
             query = this.props.location.query;
 
             if(scrollTop + innerHeight >= scrollHeight && this.state.isLoading ){
-                PageIndex++;
-                this.setState({PageIndex:PageIndex});
+                pageindex++;
+                this.setState({pageindex:pageindex});
                 this.props.dispatch(fetchPosts("querySaleGoodsList", header,
                     {
                       pageindex:pageindex,

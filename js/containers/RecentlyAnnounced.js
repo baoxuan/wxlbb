@@ -41,7 +41,7 @@ class RecentlyAnnounced extends React.Component {
     		return(<div className="loading"><span>loading</span></div>)
     	}else{
     		const { RecentlyAnnounced } = this.props;
-            console.log(RecentlyAnnounced);
+            if(RecentlyAnnounced.data.salesGoods.length >0){
 
     		return(
                 <div>
@@ -76,6 +76,8 @@ class RecentlyAnnounced extends React.Component {
                 </div>
                 </div>
     			)
+            }
+            return(<div className="loading"><span>未找到相关内容</span></div> )
     	}
 
     }
