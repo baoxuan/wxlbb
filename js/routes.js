@@ -24,6 +24,8 @@ import myShowInfo from './containers/myShowInfo'// 我的晒单记录
 import myShowDetail from './containers/myShowDetail'// 晒单详情
 import winShowInfo from './containers/winShowInfo'
 import logisticsInfo from './containers/logisticsInfo'// 物流信息
+                                                      // 
+import result from './containers/result'// 物流信息
 
 
 
@@ -40,6 +42,7 @@ const routes = (
 	    <Route path="/formula" component={formula} />
 	    <Route path="/GoodsDetail" component={GoodsDetail} />
 	    <Route path="/pay" component={pay} />
+	    <Route path="/result" component={result} />
 
 	    <Route path="/map" component={map} />
 

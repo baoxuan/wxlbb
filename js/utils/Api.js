@@ -75,6 +75,9 @@ export function requestTicket(ApiName, header, params){
 }
 
 
+
+
+
 // 用于表单提交，有错误校验
 export function requestPostByForm(ApiName, header, params){
   let url = baseUrl+API[ApiName];

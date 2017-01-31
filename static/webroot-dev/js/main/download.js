@@ -1,4 +1,3 @@
-window.$ = window.zepto = require('../libs/zepto.js');
 window.$ = window.jquery = require('jquery');
 require("./rem");
 require('../../css/reset2016.css', 'css|style');

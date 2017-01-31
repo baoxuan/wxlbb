@@ -7,6 +7,8 @@ require('../../css/yiyuan.css', 'css|style');
 
 var API = require("../libs/ApiUtil");
 
+
+
 var speed=50;
 var marquee1 = document.getElementById("marquee1");
 var marquee2 = document.getElementById("marquee2");
@@ -20,6 +22,7 @@ if(marquee2.offsetWidth-scroll_div.scrollLeft<=0)
 }
 
 var MyMar=setInterval(Marquee,speed);
+
 
 
 var flat = true;
@@ -39,6 +42,7 @@ if(window.DeviceMotionEvent) {
                 if($("#tip1").is(":hidden") && $("#tip2").is(":hidden") && flat){
                     flat = false;
                     queryNum();
+
                 }
 
         lastX = x;
@@ -47,10 +51,32 @@ if(window.DeviceMotionEvent) {
     }, false);
 }
 
-$("#btn").click(queryNum);
+
+
+// $("#btn").click(function(){
+//     queryNum();
+
+// });
+
+wx.config({
+// 配置信息
+});
+
+ wx.ready(function(){
+    var audio = document.getElementById("audio");
+    audio.src = "http://img.hzyisu.com/audio/shake.mp3";
+    audio.load();
+ })
+
 
 
 function queryNum(){
+  //播放
+
+    $("#shake").show();
+    var audio = document.getElementById("audio");
+    audio.src = "http://img.hzyisu.com/audio/shake.mp3";
+    audio.play();
     var GET = API.GetURLParams();
     var token = GET["token"];
     var url="activity/queryLotteryCount";
@@ -72,9 +98,19 @@ function queryNum(){
                 navigator.webkitVibrate(1000);
             }
 
-            lottery();
+            setTimeout(function(){
+                lottery();
+                $("#shake").hide();
+            },2000);
+
+
         }else{
-          $("#tip2").show();
+            setTimeout(function(){
+                $("#shake").hide();
+                $("#tip2").show();
+                flat = true;
+            },2000);
+
         }
      })
 

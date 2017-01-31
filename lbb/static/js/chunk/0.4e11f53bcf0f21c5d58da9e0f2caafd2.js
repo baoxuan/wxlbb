@@ -1,0 +1,2 @@
+/*coolie built*/
+define("6",[],function(e,t,s){function a(e,t,s,a,r,o){$.ajax({type:"get",url:"https://api.hzyisu.com/"+e,cache:!1,data:t,headers:s,dataType:"json",beforeSend:o,success:a,error:r})}function r(e,t,s,a,r,o){$.ajax({type:"post",url:"https://api.hzyisu.com/"+e,cache:!1,data:t,headers:s,beforeSend:o,success:a,error:r})}function o(){var e,t,s=window.location.search.substr(1).split("&"),a=[];if(s.length>0)for(e=0;e<s.length;e++){t=s[e].split("=");a[t[0]]=t[1]}return a}s.exports={getOA:a,postOA:r,GetURLParams:o}});

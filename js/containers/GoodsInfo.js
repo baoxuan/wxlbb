@@ -130,12 +130,14 @@ class GoodsInfo extends React.Component {
     this.setState({
       isShow:false
     })
-    this.context.router.push({
-        pathname:"/pay",
-        state:{
-            Msg:Msg
-        }
-    });
+    // this.context.router.push({
+    //     pathname:"/pay",
+    //     state:{
+    //         Msg:Msg
+    //     }
+    // });
+  window.location.href = "http://weixin.hzyisu.com/pay.html?barcode="+Msg.barcode+"&goodsName="+Msg.goodsName+"&joinNum="+Msg.joinNum+"&periodsNum="+Msg.periodsNum+"&price="+Msg.price;
+
   }
 
 }

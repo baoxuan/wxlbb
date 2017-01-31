@@ -187,15 +187,19 @@ class app extends React.Component {
 
   }
   buy(Msg){//提交表单
+  console.log(Msg);
     this.setState({
       isShow:false
     })
-    this.context.router.push({
-        pathname:"/pay",
-        state:{
-            Msg:Msg
-        }
-    });
+
+    window.location.href = "http://weixin.hzyisu.com/pay.html?barcode="+Msg.barcode+"&goodsName="+Msg.goodsName+"&joinNum="+Msg.joinNum+"&periodsNum="+Msg.periodsNum+"&price="+Msg.price;
+
+    // this.context.router.push({
+    //     pathname:"/pay",
+    //     state:{
+    //         Msg:Msg
+    //     }
+    // });
   }
 
 }

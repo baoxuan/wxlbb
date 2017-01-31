@@ -1,0 +1,2 @@
+/*coolie built*/
+coolie.config({debug:!1,mode:"AMD",asyncModulesMap:{},chunkModulesMap:{0:"4e11f53bcf0f21c5d58da9e0f2caafd2"},built:"coolie@2.0.9",mainModulesDir:"/static/js/main/",asyncModulesDir:"../async/",chunkModulesDir:"../chunk/",global:{}}).use();

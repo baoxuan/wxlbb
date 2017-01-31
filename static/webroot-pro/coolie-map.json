@@ -3,9 +3,8 @@
     "main": [
       {
         "src": "../webroot-dev/js/main/download.js",
-        "dest": "/static/js/main/9899315cce1886a917a27c65a710f54a.js",
+        "dest": "/static/js/main/246bd308d4fec37d8fc68b3466d5cb93.js",
         "deps": [
-          "../webroot-dev/js/libs/zepto.js",
           "../webroot-dev/node_modules/jquery/dist/jquery.js",
           "../webroot-dev/js/main/rem.js",
           "../webroot-dev/css/reset2016.css",
@@ -25,11 +24,65 @@
     "css": [],
     "res": []
   },
+  "/pay.html": {
+    "main": [
+      {
+        "src": "../webroot-dev/js/main/pay.js",
+        "dest": "/static/js/main/40aa20365f4f80b2b20685c2562cee3d.js",
+        "deps": [
+          "../webroot-dev/node_modules/jquery/dist/jquery.js",
+          "../webroot-dev/js/main/rem.js",
+          "../webroot-dev/css/reset2016.css",
+          "../webroot-dev/css/public2016.css",
+          "../webroot-dev/css/yiyuan.css",
+          "../webroot-dev/js/libs/ApiUtil.js",
+          "../webroot-dev/node_modules/js-cookie/src/js.cookie.js",
+          "../webroot-dev/node_modules/pingpp-js/src/main.js",
+          "../webroot-dev/node_modules/pingpp-js/src/version.js",
+          "../webroot-dev/node_modules/pingpp-js/src/testmode.js",
+          "../webroot-dev/node_modules/pingpp-js/src/utils.js",
+          "../webroot-dev/node_modules/pingpp-js/src/callbacks.js",
+          "../webroot-dev/node_modules/pingpp-js/src/payment_elements.js",
+          "../webroot-dev/node_modules/pingpp-js/src/mods.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/alipay_pc_direct.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/alipay_wap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/bfb_wap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/cp_b2b.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/fqlpay_qr.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/commons/redirect_base.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/fqlpay_wap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/jdpay_wap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/qpay_pub.js",
+          "../webroot-dev/node_modules/pingpp-js/src/stash.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/upacp_pc.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/upacp_wap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/wx_lite.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/wx_pub.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/wx_wap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/yeepay_wap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/channels/extras/ap.js",
+          "../webroot-dev/node_modules/pingpp-js/src/collection.js",
+          "../webroot-dev/node_modules/pingpp-js/src/libs/md5.js",
+          "../webroot-dev/node_modules/pingpp-js/src/init.js"
+        ]
+      }
+    ],
+    "js": [
+      {
+        "dest": "/static/js/7618cc3ce0b71d96ee5d22a862469841.js",
+        "deps": [
+          "../webroot-dev/node_modules/coolie.js/coolie.js"
+        ]
+      }
+    ],
+    "css": [],
+    "res": []
+  },
   "/shake.html": {
     "main": [
       {
         "src": "../webroot-dev/js/main/shake.js",
-        "dest": "/static/js/main/16a3b6f09bc443cf0cffb91e03bdd976.js",
+        "dest": "/static/js/main/0326459fae48983bc9bf2a8fac1068e4.js",
         "deps": [
           "../webroot-dev/node_modules/jquery/dist/jquery.js",
           "../webroot-dev/js/main/rem.js",

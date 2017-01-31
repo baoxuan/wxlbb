@@ -10,6 +10,7 @@
 	<meta name="description" content="一元夺宝">
 	<meta name="keywords" content="一元夺宝">
 	<title>摇一摇</title>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script coolie src="/node_modules/coolie.js/coolie.js"
         data-config="/coolie-config.js"
         data-main="shake.js"></script>
@@ -17,55 +18,45 @@
 	</style>
 </head>
 <body>
-      <div class="pop_bg" id="tip1">
-            <div id="prize_box">
-            	<a class="btn">
-            		<img src="http://img.hzyisu.com/image/pop_btn.png" />
-            	</a>
-            </div>
-       </div>
-      <div class="pop_bg"id="tip2">
-            <div class="popContainer">
-                <h3>提示</h3>
-                <p>每天每个用户最多抽奖3次</p>
-            </div>
-       </div>
+
+    <audio id="audio" class="media-audio" preload  src="http://img.hzyisu.com/audio/shake.mp3">你的浏览器不支持音频</audio>
+
             <div class="shake-box">
                 <div class="pic"><img src="http://img.hzyisu.com/image/shake.jpg" alt=""/></div>
 		<div style="width:90%;margin:0 auto;white-space: nowrap;overflow:hidden;" id="scroll_div" class="marquee">
 			<div id="marquee1">
-     139****7682  抽中168元理财红包 
-     150****6211  抽中一元抢iPhone的机会 
-     131****4521  抽中一元抢加油卡的机会 
-     135****5088  抽中一元抢IPad Air的机会 
-     134****2850  抽中一元抢乐视TV的机会 
-     137****5633  抽中一元抢小米平衡车的机会 
-     137****7655  抽中168元理财红包 
-     135****5088  抽中一元抢IPad Air的机会 
-     134****2850  抽中一元抢乐视TV的机会 
-     170****6155  抽中一元抢iPhone的机会 
-     131****4521  抽中一元抢加油卡的机会 ,
-     136****1177  抽中一元抢iPhone的机会 
-     139****7266  抽中168元理财红包 
-     130****1988  抽中一元抢iPhone的机会 
-     133****8455  抽中一元抢加油卡的机会 
+             139****7682  抽中168元理财红包 
+             150****6211  抽中一元抢iPhone的机会 
+             131****4521  抽中一元抢加油卡的机会 
+             135****5088  抽中一元抢IPad Air的机会 
+             134****2850  抽中一元抢乐视TV的机会 
+             137****5633  抽中一元抢小米平衡车的机会 
+             137****7655  抽中168元理财红包 
+             135****5088  抽中一元抢IPad Air的机会 
+             134****2850  抽中一元抢乐视TV的机会 
+             170****6155  抽中一元抢iPhone的机会 
+             131****4521  抽中一元抢加油卡的机会 ,
+             136****1177  抽中一元抢iPhone的机会 
+             139****7266  抽中168元理财红包 
+             130****1988  抽中一元抢iPhone的机会 
+             133****8455  抽中一元抢加油卡的机会 
 			</div>
 			<div id="marquee2"> 
-		139****7682  抽中168元理财红包 
-     150****6211  抽中一元抢iPhone的机会 
-     131****4521  抽中一元抢加油卡的机会 
-     135****5088  抽中一元抢IPad Air的机会 
-     134****2850  抽中一元抢乐视TV的机会 
-     137****5633  抽中一元抢小米平衡车的机会 
-     137****7655  抽中168元理财红包 
-     135****5088  抽中一元抢IPad Air的机会 
-     134****2850  抽中一元抢乐视TV的机会 
-     170****6155  抽中一元抢iPhone的机会 
-     131****4521  抽中一元抢加油卡的机会 ,
-     136****1177  抽中一元抢iPhone的机会 
-     139****7266  抽中168元理财红包 
-     130****1988  抽中一元抢iPhone的机会 
-     133****8455  抽中一元抢加油卡的机会 
+        		139****7682  抽中168元理财红包 
+             150****6211  抽中一元抢iPhone的机会 
+             131****4521  抽中一元抢加油卡的机会 
+             135****5088  抽中一元抢IPad Air的机会 
+             134****2850  抽中一元抢乐视TV的机会 
+             137****5633  抽中一元抢小米平衡车的机会 
+             137****7655  抽中168元理财红包 
+             135****5088  抽中一元抢IPad Air的机会 
+             134****2850  抽中一元抢乐视TV的机会 
+             170****6155  抽中一元抢iPhone的机会 
+             131****4521  抽中一元抢加油卡的机会 ,
+             136****1177  抽中一元抢iPhone的机会 
+             139****7266  抽中168元理财红包 
+             130****1988  抽中一元抢iPhone的机会 
+             133****8455  抽中一元抢加油卡的机会 
 			</div>
 		</div>
 		        <div class="prize">
@@ -82,6 +73,24 @@
                     <p>4.如放弃领取，视为放弃中奖结果</p>
                 </div>
             </div>
+      <div class="pop_bg" id="tip1">
+            <div id="prize_box">
+                <a class="btn">
+                    <img src="http://img.hzyisu.com/image/pop_btn.png" />
+                </a>
+            </div>
+       </div>
+      <div class="pop_bg"id="tip2">
+            <div class="popContainer">
+                <h3>提示</h3>
+                <p>每天每个用户最多抽奖3次</p>
+            </div>
+       </div>
+      <div class="pop_bg"id="shake">
+       <div class="shake">
+             <img src="http://img.hzyisu.com/image/shake.gif" />
+       </div>
+       </div>
 
 </body>
 </html>

@@ -21,6 +21,8 @@ export function fetchTicket(ApiName, header, param) {
 }
 
 
+
+
 export function fetchGET(ApiName, params) {
   var header = {"Content-Type":"application/json", "code":params.code, "token":params.token};
   return requestGet(ApiName,header);

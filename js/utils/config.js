@@ -15,6 +15,8 @@ export const API = {
 	getWinningAlgorithm: 'order/getWinningAlgorithm',//计算详情 
 	CreateOrder: 'order/CreateOrder',//创建订单
 	orderShow: 'order/orderShow',//创建订单
+	getPaymentData:'order/getPaymentData', //获取支付信息  
+	getListByOrderId:'luckyNumber/getListByOrderId',// 获取订单幸运号
 
 
 	queryAddressInfo: 'userAddress/list',//获取用户地址信息
